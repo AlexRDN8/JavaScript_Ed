@@ -13,15 +13,11 @@ n = 25 has the following divisors: 1, 5, 25
 function isPerfectNumber(num){
     let sum = 0;
     for(let i = 1; i < num; i++){
-        if(num % i == 0){
-            sum +=i;
+        if(num % i === 0){
+            sum += i;
         }
     }
-    if (sum == num){
-        return true;
-    }
-    else {
-        return false;
-    }
+
+    return sum === num;
 }
 console.log(isPerfectNumber(28));

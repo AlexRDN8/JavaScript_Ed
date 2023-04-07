@@ -13,7 +13,8 @@ nb_year(1500, 5, 100, 5000) -> 15
 nb_year(1500000, 2.5, 10000, 2000000) -> 10
 */
 
-function calculateYears(p0, percent, aug, p){
+function nbYear(p0, percent, aug, p){
+    console.log({p0, percent, aug, p})
     let count = 0;
     //let pCurrent = p0;
     while (p0 < p){
@@ -22,4 +23,4 @@ function calculateYears(p0, percent, aug, p){
     }
     return count;
 }
-console.log(calculateYears(1500000, 2.5, 10000, 2000000));
+console.log(nbYear(1500000, 2.5, 10000, 2000000));

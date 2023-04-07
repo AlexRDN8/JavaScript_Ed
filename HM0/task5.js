@@ -19,20 +19,33 @@ const readline = require('readline-sync');
 const cardNumber = readline.question("Input card number: "); // на кириллице почему то работает некорректно
 
 function maskify(cardNumber){
-    let maskedNumber = [];
-    for (let i=0; i < cardNumber.length; i++){
-        if (cardNumber.length <= 4){
-            maskedNumber += cardNumber[i]
-        }
-        else{
-            if(i < cardNumber.length - 4){
-                maskedNumber += "#";
-            }
-            else{
-                maskedNumber += cardNumber[i];
-            }
-        }
+    if (cardNumber.length <= 4){
+        return cardNumber;
     }
-    return maskedNumber;
+
+    return "#".repeat(cardNumber.length - 4) + cardNumber.slice(-4);
+
+    // const maskedNumber = [];
+    // for (let i=0; i < cardNumber.length; i++){
+    //     if(i < cardNumber.length - 4){
+    //         maskedNumber += "#";
+    //     }
+    //     else{
+    //         maskedNumber += cardNumber[i];
+    //     }
+    // }
+    // return maskedNumber;
+
+    // 5465 4654
+    // "#######" + "5616"
+
+
+    // const s = cardNumber.at(-4) + cardNumber.at(-3) + cardNumber.at(-2) + cardNumber.at(-1);
+    
+
 }
-console.log(maskify(cardNumber));
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+
+console.log(maskify("54654654"));
+

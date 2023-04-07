@@ -15,13 +15,15 @@ function arrayDiff (lst1, lst2){
     let newArray = [];
     
     for (let i of lst1){
-        let count = 0;
-        for (let j of lst2){
-            if (i == j){
-                count +=1;
-            }        
-        }
-        if (count == 0){
+        // let count = 0;
+        // for (let j of lst2){
+        //     if (i === j){
+        //         count++;
+        //     }   
+        // }
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+        if (!lst2.includes(i)){
             newArray.push(i)
         }   
     }

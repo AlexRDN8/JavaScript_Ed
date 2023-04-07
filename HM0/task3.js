@@ -8,12 +8,18 @@ Sam Harris => S.H
 patrick feeney => P.F
 */
 
-let fullName = "patrick feeney";
+// const firstName = array[0];
+// const lastName = array[1];
 
-function abbreviateName (){
-    let array = fullName.toUpperCase().split(" ");
-    let abbreviation = `${array[0][0]}.${array[1][0]}`;
-    return abbreviation;
+// const [firstName, lastName] = array;
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
+function abbreviateName (fullName){
+    const [firstName, lastName] = fullName.toUpperCase().split(" ");
+
+    return `${firstName[0]}.${lastName[0]}`;
 }
-console.log(abbreviateName(fullName));
+
+console.log(abbreviateName("qwer tyuio")); // "Q.T"
+console.log(abbreviateName("fyf ihjui")); // "F.I"
 
