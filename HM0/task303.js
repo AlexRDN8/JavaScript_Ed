@@ -15,21 +15,14 @@ Happiness rating will be total score / number of people in the room.
 Note that your boss is in the room (boss), their score is worth double it's face value 
 (but they are still just one person!).
 */
-const meet = {
-    colleague1:2,
-    colleague2:7,
-    colleague3:5,
-    colleague4:3,
-    colleague5:9,
-    boss:4
-}
-function getHappiness(){
+
+function outed(meet, boss){
     let score = 0;
     let count = 0;
     for (let key in meet){        
-        score += meet[key]; //почему то если писать meet.key, а не с квадратными скобками, то получается Nan (уточниить)
-        count+=1;
-        if (key == "boss"){
+        score += meet[key];
+        count +=1;
+        if (key == boss){
             count +=1;
             score += meet[key];
         }
@@ -46,6 +39,6 @@ function getHappiness(){
     }
     
 }
-
-getHappiness();
+// Проверку не проходит!
+outed({'tim':2, 'jim':4, 'randy':0, 'sandy':5, 'andy':8, 'katie':6, 'laura':2, 'saajid':2, 'alex':3, 'john':2, 'mr':8}, 'john');
 

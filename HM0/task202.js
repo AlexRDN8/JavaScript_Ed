@@ -20,14 +20,14 @@ function getLengthOfMissingArray(arrayOfArrays){
         return a.length - b.length;
       }
     const arr = arrayOfArrays.sort(compare);
-    if (arr.length == 0){
+    if (arr.length === 0){
         return 0;
     }
     for (let i = 1; i < arr.length; i++){
-        if (arr[i - 1].length == 0){
+        if (arr[i - 1].length === 0){
             return 0;
         }    
-        else if (arr[i].length - arr[i - 1].length != 1){
+        else if (arr[i].length - arr[i - 1].length !== 1){
             return arr[i].length - 1;
         }   
     }
