@@ -9,7 +9,7 @@ Test.assertSimilar( capitals('CodEWaRs'), [0,3,4,6] );
 var capitals = function (word) {
     const newArray = [];
     for (let i = 0; i < word.length; i++) {
-        if (word.split('')[i] === word.split('')[i].toUpperCase()){
+        if (word[i] === word[i].toUpperCase()){
             newArray.push(i);
         }
         

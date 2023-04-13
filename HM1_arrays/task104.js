@@ -7,13 +7,14 @@ The input string will only consist of lower case letters and/or spaces.
 */
 function getCount(str) {
     const vowels = ['a', 'e', 'i', 'o', 'u'];
-    const letters = str.split('');
+    //const letters = str.split('');
     let count = 0;
-    for (let index = 0; index < letters.length; index++) {
-        if (vowels.includes(letters[index])) {
-            count += 1;
+    for (const letter of str) {
+        if(vowels.includes(letter)){
+            count++;
         }
     }
     return count;
 }
 console.log(getCount("abracadabra"));
+//vowels.includes(str[index])

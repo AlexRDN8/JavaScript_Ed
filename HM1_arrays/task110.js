@@ -1,5 +1,4 @@
-/*
-Challenge:
+/*Challenge:
 Given a two-dimensional array, return a new array which carries over only those arrays from the original,
 which were not empty and whose items are all of the same type (i.e. homogenous). 
 For simplicity, the arrays inside the array will only contain characters and integers.
@@ -17,19 +16,22 @@ The resultant arrays should be in the order they were originally in and should n
 No implicit type casting is allowed. A subarray [1, '2'] would be considered illegal and 
 should be filtered out.
 */
-//[[1, 5, 4], ['a', 3, 5], ['b'], [], ['1', 2, 3]]
-function filterHomogenous(arrays) { 
-    const newArray = [];
-    function chechArrayType (array){
-        const arr1 = array.map((element) => typeof(element));
-        return [...new Set (arr1)].length === 1; //нагугил, уточнить.
-    }
-    for (let i = 0; i < arrays.length; i++) {
-        if (chechArrayType(arrays[i])){
-            newArray.push(arrays[i])
-        }
-        
-    }
-    return newArray;
+
+//[[1, 5, 4], ['a', 3, 5], ['b'], [], ['1', 2, 3]].push
+function isHomogenous (array){
+    const types = array.map(element => typeof element);
+    return new Set(types).size === 1; 
 }
+function filterHomogenous(arrays) { 
+    return arrays.filter(isHomogenous)
+
+    // const newArray = [];
+    // for (let i = 0; i < arrays.length; i++) {
+    //     if (isHomogenous(arrays[i])){
+    //         newArray.push(arrays[i])
+    //     }
+    // }
+    // return newArray;
+}
+
 console.log(filterHomogenous([[1, 5, 4], ['a', 3, 5], ['b'], [], ['1', 2, 3]]));

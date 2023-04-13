@@ -6,14 +6,18 @@ For example: if num is 454793 the output should be 4547-9-3. Don't count zero as
 Note that the number will always be non-negative (>= 0).
 */
 function insertDash(num) {
-    const array = (""+num).split("").map(Number); //нагуглил
+    const array = num.toString().split("").map(Number); //нагуглил
     const newArray = [];
     for (let i = 0; i < array.length; i++){
         newArray.push(array[i]);
-        if (array[i] %2 !==0 && array[i + 1] %2 !==0 ) {
-            newArray.push("-");
+        if (array[i] % 2 !== 0 && i + 1 < array.length && array[i + 1] % 2 !== 0) {
+            newArray.push("-"); 
         }
     }
     return newArray.join("");
  }
- console.log(insertDash(454793)); //работает неверно - в конце добавляется лишняя -
+// Math.sqrt(-1)
+// typeof undefined % 2 === "number"
+// NaN
+
+ console.log(insertDash(454793)); 
