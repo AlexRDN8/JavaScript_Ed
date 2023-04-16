@@ -26,4 +26,12 @@ function titleToNumber(title) {
     }
     return result;
   }
+
+// ASCII American Standard Code for Information Interchange
+// 97 → "a"
+
+// "ABC".charCodeAt(1) === 66
+
+// "A".charCodeAt(0) - 64
+
   console.log(titleToNumber('BA'));

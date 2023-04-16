@@ -8,16 +8,11 @@ expandedForm(70304); // Should return '70000 + 300 + 4'
 NOTE: All numbers will be whole numbers greater than 0.
 */
 function expandedForm(num) {
-    let array = String(num).split("");
-    let newArray = [];
-    array = array.map(function(element,index){
-        return element * Math.pow(10, array.length - index - 1);
-    })
-    for (const element of array) {
-      if (element !== 0){
-        newArray.push(element)
-      }
-    }
-    return newArray.join(" + "); 
+    return num
+      .toString()
+      .split("")
+      .map((digit, i, arr) => digit * 10 ** (arr.length - i - 1))
+      .filter(number => number !== 0)
+      .join(" + ");
   }
   console.log(expandedForm(70304))

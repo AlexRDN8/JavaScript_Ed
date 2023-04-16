@@ -29,4 +29,7 @@ function countSmileys(arr) { //[':)', ';(', ';}', ':-D']
     }
     return count;
 }
-console.log(countSmileys([':D',':~)',';~D',':)']));
+// проходит не все тесты, доделать.
+console.log(countSmileys(["):"]));
+console.log(countSmileys([":)))"]));
+console.log(countSmileys([":-----)"]));

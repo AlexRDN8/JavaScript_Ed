@@ -27,19 +27,21 @@ Note the additional whitespace around the bracketed literals in the examples!
 //map(func)
 //split/join
 
-obfuscate = function(email) {
-    let obfuscateEmail = [];
-    email.split("");
-    for (const element of email) {
-        if (element === '@'){
-            obfuscateEmail.push(' [at] ');
-        }
-        else if (element === '.'){
-            obfuscateEmail.push(' [dot] ');
-        }else{
-            obfuscateEmail.push(element)
-        }   
-    }
-    return obfuscateEmail.join(""); 
-  }
+function obfuscate(email) {
+    return email
+        .replaceAll('@', ' [at] ')
+        .replaceAll('.', ' [dot] ');
+}
+//     for (const element of email) {
+//         if (element === '@'){
+//             obfuscateEmail.push(' [at] ');
+//         }
+//         else if (element === '.'){
+//             obfuscateEmail.push(' [dot] ');
+//         }else{
+//             obfuscateEmail.push(element)
+//         }   
+//     }
+//     return obfuscateEmail.join(""); 
+//   }
 console.log(obfuscate("user_name@exa.mple.com"))

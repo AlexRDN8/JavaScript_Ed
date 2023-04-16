@@ -16,10 +16,20 @@ scrollingText("codewars") should return:
   "RSCODEWA",
   "SCODEWAR" ]
 */
+
+
+// CODEWARS → ODEWARS + С
+
 function scrollingText(text){
-  newArray = [];
-  const array = text.toUpperCase().split("");
- 
+  const newArray = [];
+  const array = text.toUpperCase();
+  for (let i = 0; i < array.length; i++) {
+    const firstPart = array.slice(i);
+    const lastPart = array.slice(0, i);
+    const fullWord = firstPart.concat(lastPart);
+    newArray.push(fullWord);
+  }
+  return newArray;
 }
-//!!! Не смог решить. 
+
 console.log(scrollingText("codewars"));

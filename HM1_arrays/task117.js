@@ -8,9 +8,6 @@ findMagic([-20,-10,2,10,20]); // Returns 2
 
 
 function findMagic(arr){ // return the magic index
-    let result = arr.findIndex(function(item, index) {
-        return item === index;
-    });
-    return result;
+    return arr.findIndex((item, index) => item === index);
 }
-console.log(findMagic([-20,-10,3,2,10,20]));
+console.log(findMagic([-20,-10,2,10,20]));
