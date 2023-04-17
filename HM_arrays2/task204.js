@@ -9,10 +9,10 @@ Example: He haD iEght ShOTs of CAffIEne. --> He had eight shots of caffeine.
 */
 function proofread (str) { 
     const newString = str
-    .toLowerCase()
-    .replaceAll("ie", "ei")
-    .split(". ") // Как одновременно разбить и по другим знакам окончания строки?
-    .map(sentense => sentense[0].toUpperCase() + sentense.slice(1))
+        .toLowerCase()
+        .replaceAll("ie", "ei")
+        .split(". ") // Как одновременно разбить и по другим знакам окончания строки?
+        .map(sentense => sentense[0].toUpperCase() + sentense.slice(1))
     
     return newString.join(". "); 
     } 
