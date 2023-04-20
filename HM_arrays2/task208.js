@@ -31,28 +31,37 @@ The line separator of results may depend on the language \n or \r\n. See example
 R language: Don't use R's base function "mean()" that could give results slightly different from expected ones.
 */
 var b1 = 
-  `1000.00!=
-  125 Market !=:125.45
-  126 Hardware =34.95
-  127 Video! 7.45
-  128 Book :14.32
-  129 Gasoline ::16.10
-  `
+`1000.00!=
+125 Market !=:125.45
+126 Hardware =34.95
+127 Video! 7.45
+128 Book :14.32
+129 Gasoline ::16.10
+`
+  // .replaceAll(/ +/g, ' '); // заменяет множественные пробелы на одинарные. не знаю как это добавить в метод выше
 
 function balance(book) {
-    const str = book
-        .replaceAll(/[^a-zа-яё0-9.\s]/gi, ' ') // копирнул, не понял для чего \s и на что влияет global 
-        .replaceAll(/ +/g, ' '); // заменяет множественные пробелы на одинарные. не знаю как это добавить в метод выше
-    const arrayOfString = str
+    const [firstLine, ...lines] = book
+        .replaceAll(/[^a-zа-яё0-9.\s]/gi, '') // копирнул, не понял для чего \s и на что влияет global 
         .split('\n')
-        .filter(entry => entry.trim() !== '')
-        .map(item => item.trim().split(" "))
+        .filter(entry => entry !== '');
+
+    console.log(firstLine)
+    console.log(lines)
+
+    for(const line of lines) {
+      const [id, title, price] = line.split(" ");
+      console.log(id, title, price);
+    }
+
+        // .map(item => item.trim().split(" "))
     //const OrigBalance = arrayOfString[0]; 
 
      
         
-    return arrayOfString;
+    // return arrayOfString;
   }
+  // Не сделал.
   console.log(balance(b1));
 
 

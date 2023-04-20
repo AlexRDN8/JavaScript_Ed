@@ -13,18 +13,20 @@ Constraints: 10 ≤ n ≤ 1000000.
 
 [output] an integer
 */
+
+[1,2,...[3,4,5],6,...[7,8,9,0], ..."qwe"]
+
 function deleteDigit(n) {
-    const array = [...'' + n].map(Number) //уточнить
+    // const array = [...'' + n].map(Number) //уточнить
+    const array = n.toString().split("").map(Number) //уточнить
     const newArray = [];
-    const sortingFunction = (a , b) => a - b;
 
     for (let i = 0; i < array.length; i++) {
-        let copyOfArray = array.slice();
-        copyOfArray.splice(i , 1)
+        const copyOfArray = [...array];
+        copyOfArray.splice(i, 1)
         newArray.push(Number(copyOfArray.join("")))   
     }
-    const sortedArray = newArray.sort(sortingFunction);
-    return sortedArray.at(-1);
+    return Math.max(...newArray);
 }
 // проверочное число n = 597306, 809053.  
 console.log(deleteDigit([809053]));

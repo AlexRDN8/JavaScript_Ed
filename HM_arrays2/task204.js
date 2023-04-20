@@ -10,11 +10,12 @@ Example: He haD iEght ShOTs of CAffIEne. --> He had eight shots of caffeine.
 function proofread (str) { 
     const newString = str
         .toLowerCase()
-        .replaceAll("ie", "ei")
-        .split(". ") // Как одновременно разбить и по другим знакам окончания строки?
+        // .replaceAll("ie", "ei")
+        .replace(/ie/g, "ei")
+        .split(/[.!?] /) 
         .map(sentense => sentense[0].toUpperCase() + sentense.slice(1))
     
     return newString.join(". "); 
-    } 
+} 
         
-console.log(proofread ("ThiEr DEcIEt wAs INconcIEVablE. sHe SIeZeD thE moMENT."));
+console.log(proofread ("ThiEr DEcIEt? ugyutgf vtyfd! wAs INconcIEVablE. sHe SIeZeD thE moMENT."));

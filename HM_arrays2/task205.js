@@ -17,15 +17,18 @@ function formatWords(words){
     if (words === null){
         return "";
     }
-    let newWords = words.filter(word => word != "")
-    if (newWords.length > 1){
-        const firstPart = newWords
-            .slice(0,-1)
-            .join(", ");
-        return result = firstPart.concat(" and " + newWords[newWords.length - 1]);
-    }else{
-        return newWords.toString();
-    }   
+    const newWords = words.filter(word => word !== "")
+
+    if (newWords.length === 0){
+        return "";
+    }
+    if(newWords.length === 1){
+        return newWords[0]
+    }
+
+    const firstPart = newWords.slice(0,-1).join(", ");
+    return firstPart + " and " + newWords.at(-1);
+
 }
 console.log(formatWords(null));
 
