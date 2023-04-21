@@ -38,7 +38,20 @@ var b1 =
 128 Book :14.32
 129 Gasoline ::16.10
 `
-  // .replaceAll(/ +/g, ' '); // заменяет множественные пробелы на одинарные. не знаю как это добавить в метод выше
+var b2=`1233.00
+125 Hardware;! 24.8?;
+123 Flowers 93.5
+127 Meat 120.90
+120 Picture 34.00
+124 Gasoline 11.00
+123 Photos;! 71.4?;
+122 Picture 93.5
+132 Tyres;! 19.00,?;
+129 Stamps 13.6
+129 Fruits{} 17.6
+129 Market;! 128.00?;
+121 Gasoline;! 13.6?;`
+
 
 function balance(book) {
     const [firstLine, ...lines] = book
@@ -46,22 +59,41 @@ function balance(book) {
         .split('\n')
         .filter(entry => entry !== '');
 
-    console.log(firstLine)
-    console.log(lines)
-
+      const id = [];
+      const title = [];
+      let price = [];
+    
     for(const line of lines) {
-      const [id, title, price] = line.split(" ");
-      console.log(id, title, price);
+      // const [id, title, price] = line.split(" ") // если внутри цикла объявляю эти переменные, то она потом не видятся вне цикла. 
+      id.push(line.split(" ")[0]); 
+      title.push(line.split(" ")[1]);
+      price.push(line.split(" ")[2]);
     }
+    const origBalance = Number(firstLine).toFixed(2);
+    price = price.map(element => Number(element).toFixed(2)); // почему если не переприсваивать значение переменной, результат price.map(element => Number(element)) не сохраняется.
+    
+    let tempOrigBalance = origBalance;
+    const newBalance = price.map(function(number){
+      tempOrigBalance -= number;
+      return Number(tempOrigBalance).toFixed(2)
+    })
 
-        // .map(item => item.trim().split(" "))
-    //const OrigBalance = arrayOfString[0]; 
-
-     
-        
-    // return arrayOfString;
+    const totalExpense = Number(price
+      .reduce((sum, item) => sum + Number(item), 0)
+      ).toFixed(2);
+    const averageExpense = Number((totalExpense / price.length).toFixed(2));
+    
+    const top = "Original Balance: " + origBalance;
+    let middle = "";
+    for (let i = 0; i < id.length; i++) {
+      let line = id[i] + " " + title[i] + " " +  price[i] + " Balance " + newBalance [i] + '\r\n'
+      middle += line 
+    }
+    const bottom = "Total expense  " + totalExpense + "\r\n" + "Average expense  " + averageExpense;
+    return top + "\r\n" + middle + bottom; //использовал "\r\n", так как в проверочных тестах вместо "\n" используется "\r\n" 
   }
-  // Не сделал.
-  console.log(balance(b1));
+  
+
+  console.log(balance(b2)); // проходит лишь первичную проверку
 
 
