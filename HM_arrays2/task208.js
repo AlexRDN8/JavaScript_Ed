@@ -55,7 +55,7 @@ var b2=`1233.00
 
 function balance(book) {
     const [firstLine, ...lines] = book
-        .replaceAll(/[^a-zа-яё0-9.\s]/gi, '') // копирнул, не понял для чего \s и на что влияет global 
+        .replaceAll(/[^a-zа-яё0-9.\s]/gi, '') 
         .split('\n')
         .filter(entry => entry !== '');
 
@@ -65,12 +65,14 @@ function balance(book) {
     
     for(const line of lines) {
       // const [id, title, price] = line.split(" ") // если внутри цикла объявляю эти переменные, то она потом не видятся вне цикла. 
+      //const line  = `${id} ${title} ${price.toFixed(2)} Balance ${balance.toFixed(2)}`
+      //arr.push (line) 
       id.push(line.split(" ")[0]); 
       title.push(line.split(" ")[1]);
       price.push(line.split(" ")[2]);
-    }
+    }  
     const origBalance = Number(firstLine).toFixed(2);
-    price = price.map(element => Number(element).toFixed(2)); // почему если не переприсваивать значение переменной, результат price.map(element => Number(element)) не сохраняется.
+    price = price.map(element => Number(element)); 
     
     let tempOrigBalance = origBalance;
     const newBalance = price.map(function(number){
@@ -81,15 +83,15 @@ function balance(book) {
     const totalExpense = Number(price
       .reduce((sum, item) => sum + Number(item), 0)
       ).toFixed(2);
-    const averageExpense = Number((totalExpense / price.length).toFixed(2));
+    const averageExpense = totalExpense / price.length; // почему в некоторых тестах оставляет 1 знак после запятой
     
     const top = "Original Balance: " + origBalance;
     let middle = "";
     for (let i = 0; i < id.length; i++) {
-      let line = id[i] + " " + title[i] + " " +  price[i] + " Balance " + newBalance [i] + '\r\n'
+      let line = id[i] + " " + title[i] + " " +  price[i] + " Balance " + newBalance [i] + '\r\n' 
       middle += line 
     }
-    const bottom = "Total expense  " + totalExpense + "\r\n" + "Average expense  " + averageExpense;
+    const bottom = "Total expense  " + totalExpense + "\r\n" + "Average expense  " + averageExpense.toFixed(2);
     return top + "\r\n" + middle + bottom; //использовал "\r\n", так как в проверочных тестах вместо "\n" используется "\r\n" 
   }
   

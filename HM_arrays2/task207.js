@@ -28,17 +28,24 @@ The lowest index N where the side to the left of N is equal to the side to the r
 Note:
 If you are given an array with multiple answers, return the lowest correct index.
 */
-function findEvenIndex(arr)
-{
-    for (let i = 0; i < arr.length; i++) {
-        const leftSide = arr.slice(0, i);
-        const rightSide = arr.slice(i+1);
-        const sumOfLeft = leftSide.reduce((sum, current)=> sum + current , 0);
-        const sumOfright = rightSide.reduce((sum, current)=> sum + current, 0);
-        if(sumOfLeft === sumOfright){
-            return i
-        }    
-    }
-    return -1;
+function findEvenIndex(arr) {
+    return arr.findIndex((_, i) => {
+        const sumOfLeft = arr.slice(0, i).reduce((sum, current)=> sum + current, 0);
+        const sumOfright = arr.slice(i + 1).reduce((sum, current)=> sum + current, 0);
+
+        return sumOfLeft === sumOfright
+    });
+
+    
+    // for (let i = 0; i < arr.length; i++) {
+    //     const leftSide = arr.slice(0, i);
+    //     const rightSide = arr.slice(i+1);
+    //     const sumOfLeft = leftSide.reduce((sum, current)=> sum + current , 0);
+    //     const sumOfright = rightSide.reduce((sum, current)=> sum + current, 0);
+    //     if(sumOfLeft === sumOfright){
+    //         return i
+    //     }    
+    // }
+    // return -1;
 }
 console.log(findEvenIndex([20,10,30,10,10,15,35]));
