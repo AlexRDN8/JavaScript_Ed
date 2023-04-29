@@ -21,22 +21,33 @@ Amount of tests: 1 000
 Time limit: 150 ms
 */
 
-function indexEqualsValue(a) {
+function indexEqualsValue(a) { //[-5, 1, 2, 3, 4, 5, 7, 10, 15]
    //return a.findIndex((number, index) => number === index);  //медленно
    let start = 0;
    let end = a.length - 1;
+   // const array = [];
+   let min = -1;
    while (start <= end) {
       let indexSeparator = Math.floor((start + end) / 2);
       if (indexSeparator === a[indexSeparator]) {
-         return indexSeparator;
+         //console.log(indexSeparator);
+         // array.push(indexSeparator);
+         min = indexSeparator
+         end = indexSeparator - 1;
       }
       else if (indexSeparator < a[indexSeparator]){
          end = indexSeparator - 1;
       }else{
          start = indexSeparator + 1;
       }
+      
    }
-   return -1;
+   return min;
+   // if(min !== undefined){
+   //    return min;
+   //    // return array[array.length -1];
+   // }
+   // return -1;
 }
 // Через бинарный поиск работает неправильно, так как по условиям задачи должен вернуться минимальный индекс.
 

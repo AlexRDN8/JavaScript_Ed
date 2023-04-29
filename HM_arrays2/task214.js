@@ -20,13 +20,15 @@ Example
 */
 
 function isPrime(num) {
-    if (num <= 1 || num === 4 || num === 6 || num === 8){
+    if (num <= 1){
         return false ;
     }
-    for(let i = 3; i <= Math.sqrt(num) && i !== num; i+=2)
-        if (num % i === 0 || num % 2 === 0) {
-            return false ;
+    for(let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
         }
+    }
     return true;
   }
-  console.log(isPrime(3))
+
+console.log(isPrime(2 ** 31 - 1))

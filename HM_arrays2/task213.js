@@ -40,20 +40,17 @@ runLengthEncoding("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbb")
 //видимо не правильно понял задание.
 
 var runLengthEncoding = function(str){
-    const arr = str.split("");
     const finalArray = [];
     let amount = 1;
-    for (let i = 0; i < arr.length; i++) {    
-        if(arr[i] === arr[i + 1]){
+    for (let i = 0; i < str.length; i++) {    
+        if(str[i] === str[i + 1]){
             amount += 1;
         }else{
-            let tempArr = [amount, arr[i]];
-            finalArray.push(tempArr);
+            finalArray.push([amount, str[i]]);
             amount = 1;
         }       
     }
     return finalArray;
-
 }
 
 console.log(runLengthEncoding("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"))

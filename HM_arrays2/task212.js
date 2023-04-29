@@ -26,33 +26,21 @@ function calculate(expression) {
   const reverseExpression = expression // [ '2', '2', '*', '5', '3', '+', '/']
     .split(" ")
     .reverse();
-  //const operators = ['+', '-', '*', '/']; 
+  // const operators = ['+', '-', '*', '/']; 
+  const operators = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
+  }
   const stack = [];
-  let result = 0;
-  let temp1 = 0;
-  let temp2 = 0;
-  for (let i=0; i < reverseExpression.length; i++){
-    if (typeof Number(reverseExpression[i]) === 'number' && !isNaN(reverseExpression[i])){ //сначала писал без !isNaN,  без !isNaN не работает.
-      stack.push(Number(reverseExpression[i]))
-    }else if(reverseExpression[i] === '+'){
-      temp2 = stack.pop();
-      temp1 = stack.pop();
-      result = temp1 + temp2;
-      stack.push(result);
-    }else if(reverseExpression[i] === '-'){
-      temp2 = stack.pop();
-      temp1 = stack.pop();
-      result = temp2 - temp1;
-      stack.push(result);
-    }else if(reverseExpression[i] === '*'){
-      temp2 = stack.pop();
-      temp1 = stack.pop();
-      result = temp1 * temp2;
-      stack.push(result);
-    }else if(reverseExpression[i] === '/'){
-      temp2 = stack.pop();
-      temp1 = stack.pop();
-      result = temp2 / temp1;
+  for (const token of reverseExpression){
+    if (!(token in operators)){
+      stack.push(Number(token)) 
+    } else {
+      const temp1 = stack.pop();
+      const temp2 = stack.pop();
+      const result = operators[token](temp1,temp2);
       stack.push(result);
     }
   }
@@ -60,4 +48,4 @@ function calculate(expression) {
   return stack.pop();
 }
 // запутался что из чего вычетать/делить  
-console.log(calculate('/ + 3 5 * 2 2'))
+console.log(calculate('* + 2 2 3'))
