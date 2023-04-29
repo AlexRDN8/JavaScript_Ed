@@ -16,15 +16,6 @@ Leading zeros (e.g. 01.02.03.04) are considered invalid
 Inputs are guaranteed to be a single string
 */
 
-// function checkIsIPV4(entry) {
-//     var blocks = entry.split(".");
-//     if(blocks.length === 4) {
-//       return blocks.every(function(block) {
-//         return parseInt(block,10) >=0 && parseInt(block,10) <= 255;
-//       });
-//     }
-//     return false;
-//   }
 
 function isValidIP(str) {
     const array = str.split(".")
