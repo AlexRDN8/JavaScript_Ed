@@ -1,28 +1,28 @@
 /*
-Given two numbers and an arithmetic operator (the name of it, as a string), 
-return the result of the two numbers having that operator used on them.
+An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
 
-a and b will both be positive integers, and a will always be the first number in the operation, 
-and b always the second.
+Note: anagrams are case insensitive
 
-The four operators are "add", "subtract", "divide", "multiply".
+Complete the function to return true if the two arguments given are anagrams of each other; 
+return false otherwise.
 
-A few examples:(Input1, Input2, Input3 --> Output)
+Examples
+"foefet" is an anagram of "toffee"
 
-5, 2, "add"      --> 7
-5, 2, "subtract" --> 3
-5, 2, "multiply" --> 10
-5, 2, "divide"   --> 2.5
-Try to do it without using if statements!
+"Buckethead" is an anagram of "DeathCubeK"
 */
 
-function arithmetic(a, b, operator){
-    const calculation = {
-        "add": (a,b) => a + b,
-        "subtract": (a,b) => a - b,
-        "multiply": (a,b) => a * b,
-        "divide": (a,b) => a / b
-    }
-    return calculation[operator](a,b) 
-  }
-  console.log(arithmetic(8, 2, "divide"))
+// write the function isAnagram
+var isAnagram = function(test, original) {
+    const array1 = test.toLowerCase().split("") 
+    const array2 = original.toLowerCase().split("")
+    const arrayOfarray1 = array1.map(char => array1.filter(element=> element === char).toString()); // преобразовал элементы в строку, чтобы можно было их потом сравнить
+    const arrayOfarray2 = array2.map(char => array2.filter(element=> element === char).toString());
+    // console.log(arrayOfarray1)
+    // console.log(arrayOfarray2)
+    return arrayOfarray1.every(array => arrayOfarray2.includes(array)) && arrayOfarray2.every(array => arrayOfarray1.includes(array))
+
+};
+
+
+console.log(isAnagram("ound", "round"))
