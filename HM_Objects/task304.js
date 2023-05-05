@@ -48,7 +48,7 @@ const whosOnline = (friends) => {
     offline: [],
     away: [],
   };
-
+  const finalStats = {};
   for (const friend of friends){
     if(friend.status === 'online' && friend.lastActivity <= 10){
       stats.online.push(friend.username)
@@ -58,22 +58,14 @@ const whosOnline = (friends) => {
       stats.offline.push(friend.username)
     }
   }
-  return stats;
+  for (const key in stats) {
+    if(stats[key] != ""){ // почему не работает stats[key] != [] и почему если использовать stats.key вместо кватратных скобок тоже не работает
+      finalStats[key] = stats[key];
+    }
+  }
+  
+  return finalStats;
 }
-
-const o = {
-  a: 1,
-  b: 2,
-  cccc: 6,
-};
-
-o.a === 1;
-o["a"] === 1;
-
-let a = "b";
-o[a] === 2
-o["c".repeat(4)] === 6
-
 
   const friends = [{
     username: 'David',
