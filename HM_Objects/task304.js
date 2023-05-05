@@ -43,22 +43,38 @@ Finally, if you have no friends in your chat application, the input will be an e
 In this case you should return an empty object {} (empty Dictionary in C#).
 */
 const whosOnline = (friends) => {
-  const newObject = {};
-  newObject['online'] = new Array();
-  newObject['offline'] = new Array();
-  newObject['away'] = new Array();
-  for (let element of friends){
-    if(element["status"] === 'online' && element["lastActivity"] <= 10){
-      newObject['online'].push(element["username"])
-    }
-    else if(element["status"] === 'online' && element["lastActivity"] > 10){
-      newObject['away'].push(element["username"])
-    }else{
-      newObject['offline'].push(element["username"])
+  const stats = {
+    online: [],
+    offline: [],
+    away: [],
+  };
+
+  for (const friend of friends){
+    if(friend.status === 'online' && friend.lastActivity <= 10){
+      stats.online.push(friend.username)
+    } else if(friend.status === 'online' && friend.lastActivity > 10){
+      stats.away.push(friend.username)
+    } else{
+      stats.offline.push(friend.username)
     }
   }
-  return newObject;
-  }
+  return stats;
+}
+
+const o = {
+  a: 1,
+  b: 2,
+  cccc: 6,
+};
+
+o.a === 1;
+o["a"] === 1;
+
+let a = "b";
+o[a] === 2
+o["c".repeat(4)] === 6
+
+
   const friends = [{
     username: 'David',
     status: 'online',
@@ -74,4 +90,5 @@ const whosOnline = (friends) => {
   }]
 // не правильно, так как значение должно возвращаться внутри массива, у меня же значения заменяют друг друга, либо если я предварительно создаю пустой массив- он остается в объекте.
 console.log(whosOnline(friends));
+// доделать
 

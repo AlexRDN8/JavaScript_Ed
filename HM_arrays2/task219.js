@@ -19,18 +19,29 @@ Attention: If the number has leading zeros the amount of digits should be consid
 */
 function incrementString (string) {
     return string.replace(/[0-9]*$/, match =>{
-        if (match[0] === "0" && match.length > 1){
-            let indexOfFirstNot0 = match
-                .split('')
-                .findIndex(elem => elem != "0")
-            if (indexOfFirstNot0 === -1){ //на случай когда в match все нули, из-за чего findIndex возвращает -1 
-                indexOfFirstNot0 = match.length - 1
-            } 
-            return match = "0".repeat(indexOfFirstNot0) + (Number(match) + 1)
-        }else{
-            return match = Number(match) + 1
-        }
+        // match === "099"
+        // if (match[0] === "0" && match.length > 1){
+        //     let indexOfFirstNot0 = match
+        //         .split('')
+        //         .findIndex(elem => elem != "0")
+        //     if (indexOfFirstNot0 === -1){ //на случай когда в match все нули, из-за чего findIndex возвращает -1 
+        //         indexOfFirstNot0 = match.length - 1
+        //     } 
+        //     return match = "0".repeat(indexOfFirstNot0) + (Number(match) + 1)
+        // }else{
+        //     return Number(match) + 1
+        // }
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart#basic_examples
+
+        // const str = "12".padStart(5, "0") // 00012
+
+        // "0000012" → "0000013"
+        // 0000012 → 12  12 + 1 → 13
+        return Number(match) + 1
     }) 
 }
 //Не все тесты проходит, так как 099 должно меняться на 100, а не на 0100
-console.log(incrementString("foobar099"))
+
+console.log(incrementString("f12oobar2345"))
+console.log(incrementString("f12oobar099"))
