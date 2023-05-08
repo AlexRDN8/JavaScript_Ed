@@ -11,16 +11,16 @@ Examples
 {"C++": 50, "ASM": 10, "Haskell": 20}     -->  []
 */
 function myLanguages(results) {
-    const languagies = [];
+    const languages = [];
     const arrayOfScores = Object
         .entries(results)
         .sort((a,b) => b[1] - a[1]);
     for (const score of arrayOfScores) {
         if (score[1] >= 60){
-            languagies.push(score[0])
+            languages.push(score[0])
         }
     }
-    return languagies;
+    return languages;
 }
 
 console.log(myLanguages({"Hindi": 60, "Dutch" : 93, "Greek": 71}))

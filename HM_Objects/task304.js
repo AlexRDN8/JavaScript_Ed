@@ -48,7 +48,6 @@ const whosOnline = (friends) => {
     offline: [],
     away: [],
   };
-  const finalStats = {};
   for (const friend of friends){
     if(friend.status === 'online' && friend.lastActivity <= 10){
       stats.online.push(friend.username)
@@ -58,8 +57,9 @@ const whosOnline = (friends) => {
       stats.offline.push(friend.username)
     }
   }
+  const finalStats = {};
   for (const key in stats) {
-    if(stats[key] != ""){ // почему не работает stats[key] != [] и почему если использовать stats.key вместо кватратных скобок тоже не работает
+    if(stats[key].length !== 0){ 
       finalStats[key] = stats[key];
     }
   }

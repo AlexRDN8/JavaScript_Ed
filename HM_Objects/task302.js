@@ -30,14 +30,18 @@ function scoreboard(string) {
         eight: 8,
         nine: 9
     }
-    const count = [];
-    const array = string.split(" ");
-    for (const element of array) {
-        if(element in numbers){
-            count.push(numbers[element])
-        }
-    }
-    return count;
+    //const count = [];
+    const array = string
+        .split(" ")
+        .filter(word => Object.keys(numbers).includes(word))
+        .map(word => numbers[word])
+
+    // for (const element of array) {
+    //     if(element in numbers){
+    //         count.push(numbers[element])
+    //     }
+    // }
+    return array;
   }
-  
+// переделать for через filter и map  
 console.log(scoreboard("Arsenal just conceded another goal, two nil"))

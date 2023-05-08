@@ -23,8 +23,12 @@ function DNAStrand(dna){
         "G":"C",
         "C":"G"
     }
-    const newStr = dna.replace(/[ATGC]/g, match => chars[match]);
-    return newStr;
+    return dna
+        .split("")
+        .map(char => chars[char])
+        .join("")
+    // const newStr = dna.replace(/[ATGC]/g, match => chars[match]);
+    // return newStr;
 }
 
 console.log(DNAStrand("ATTGC"))
