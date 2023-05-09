@@ -26,3 +26,13 @@ Hvae unf !
 I'd advise you to find an efficient way for grouping the words in anagrams otherwise 
 you'll probably won't pass the heavy superhero test cases
 */
+function groupAnagrams(words){
+  const arrayOfWords = words.map(word => word.split(""));
+  const groupAnagrams = {};
+  for (const word of arrayOfWords) {
+    
+  }
+  //return arrayOfWords;
+}
+console.log(groupAnagrams(["tsar", "rat", "tar", "star", "tars", "cheese"]))
+// не сделал.

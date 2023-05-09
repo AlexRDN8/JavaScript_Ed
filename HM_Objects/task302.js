@@ -43,5 +43,5 @@ function scoreboard(string) {
     // }
     return array;
   }
-// переделать for через filter и map  
+
 console.log(scoreboard("Arsenal just conceded another goal, two nil"))
