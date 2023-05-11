@@ -11,16 +11,19 @@ Examples
 {"C++": 50, "ASM": 10, "Haskell": 20}     -->  []
 */
 function myLanguages(results) {
-    const languages = [];
+    //const languages = [];
     const arrayOfScores = Object
         .entries(results)
         .sort((a,b) => b[1] - a[1]);
-    for (const score of arrayOfScores) {
-        if (score[1] >= 60){
-            languages.push(score[0])
-        }
-    }
-    return languages;
+    return arrayOfScores
+        .filter(arr => arr[1] >= 60)
+        .map(arr => arr[0]);        
+    // for (const score of arrayOfScores) { // переделать через map и filter
+    //     if (score[1] >= 60){
+    //         languages.push(score[0])
+    //     }
+    // }
+    //return languages;
 }
 
-console.log(myLanguages({"Hindi": 60, "Dutch" : 93, "Greek": 71}))
+console.log(myLanguages({"Hindi": 60, "Dutch" : 53, "Greek": 71}))

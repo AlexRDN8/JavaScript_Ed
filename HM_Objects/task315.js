@@ -52,18 +52,22 @@ function findPair(arr1,arr2){
     const objectOfPairs = {};
     const groupOfPairs = arr1.map((num, index) => [num, arr2[index]]) // создание пар формата [ [arr1[0], arr2[0]] , [arr1[1], arr2[1]] , ... ] 
     for (const pair of groupOfPairs) {
-        if (objectOfPairs[summ(pair)] === undefined){
-            objectOfPairs[summ(pair)] = []
-        }
+        objectOfPairs[summ(pair)] = objectOfPairs[summ(pair)] ?? []
         objectOfPairs[summ(pair)].push(pair) 
     }
-    return Object
-        .values(objectOfPairs)
-        .filter(arr => arr.length === Math.max(Object.values(objectOfPairs).length))       
-        //.slice(-1) // где то читал про то что ключи упорядочиваются внутри объекта особым образом - если числа, то вроде по порядку, а остальное по времени добавления
-        .flat() // применил flat чтобы убрать лишнюю вложенность массива
+    //console.log(objectOfPairs);
+    const pairs = Object.values(objectOfPairs);
+    const maxLength = Math.max(...pairs.map(arr => arr.length)); // посчитал количество пар в каждой группе и взял максимальное
+    if(maxLength === 1){
+        return [];
+    }
+    const sameSumPairs = pairs.filter(arr => arr.length === maxLength);
+    //return sameSumPairs.flat();
+    return sameSumPairs.length > 1 ? sameSumPairs[sameSumPairs.length - 1] : sameSumPairs.flat();
 
 }
-//console.log(findPair([1,2,3,4,5], [9,8,0,1,0]))  // should return [[1,9],[2,8]]
+console.log(findPair([1,2,3,4,5], [9,8,0,1,0]))  // should return [[1,9],[2,8]]
+//console.log(findPair([1,2,3,4,5],[0,0,0,0,0]))
 console.log(findPair([299,1573,120,1155,1322,-188,59,95,451,1155,231,1241,147,-86,887,1477,666],[905,256,616,455,-192,1392,677,1109,753,-419,1540,-505,1463,1290,317,1030,538] ))
+
 //Решено не до конца, исправить.

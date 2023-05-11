@@ -10,11 +10,13 @@ If an object is missing the property, you should just leave it as undefined/None
 */
 
 function pluck(objs, name) {
-    arrayOfProperties = []
-    for (const element of objs) {
-        arrayOfProperties.push(element[name])
-    }
-    return arrayOfProperties;
+    return objs.map(object => object[name])
+    
+    // const arrayOfProperties = [];
+    // for (const element of objs) {
+    //     arrayOfProperties.push(element[name])
+    // }
+    // return arrayOfProperties;
 
 }
 console.log(pluck([{a:1}, {a:2}], 'a'))

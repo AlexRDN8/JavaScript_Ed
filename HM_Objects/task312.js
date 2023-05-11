@@ -32,13 +32,34 @@ Notes:
 The order of the properties in the objects does not matter (except in COBOL).
 The input array will always be valid and formatted as in the example above.
 */
-function greetDevelopers(list) {
-    const newList = Array.from(list)
-    for (const developer of newList) {
-        developer['greeting'] = `Hi ${developer.firstName}, what do you like the most about ${developer.language}?`
-    }
-    return newList
+// function greetDevelopers(list) {
+//   const newList = [];
+//   for (const object of list) {
+//     newList.push({
+//       ...object,
+//       greeting: `Hi ${object.firstName}, what do you like the most about ${object.language}?`,
+//     });  
+//   }
+//   return newList;
+// }
+
+function greetDevelopers(list) { 
+  return list.map(object => ({ //!!!!!
+    ...object,
+    greeting: `Hi ${object.firstName}, what do you like the most about ${object.language}?`,
+  }));
+  
+  const newList = [];
+  for (const object of list) {
+    newList.push({
+      ...object,
+      greeting: `Hi ${object.firstName}, what do you like the most about ${object.language}?`,
+    });  
+  }
+  return newList;
 }
+
+
 
 const list1 = [
     { firstName: 'Sofia', lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java' },
@@ -46,4 +67,6 @@ const list1 = [
     { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby' } 
   ];
 
-console.log(greetDevelopers(list1))
+const list2 = greetDevelopers(list1);
+console.log("result", list2)
+console.log("original", list1)

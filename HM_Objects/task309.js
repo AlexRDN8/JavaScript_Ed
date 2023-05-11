@@ -20,11 +20,15 @@ that is most recent seen
 function objConcat(arrayOfObjects){
    const newObject = {};
    for (const object of arrayOfObjects) {
-    for (const key in object) {
-      newObject[key] = object[key]
-    }
+    Object.assign(newObject, object);
+    // for (const key in object) {
+    //   newObject[key] = object[key]
+    // }
    }
    return newObject;
+}
+function objConcat(arrayOfObjects){
+   return Object.assign({}, ...arrayOfObjects);
 }
 const a={'1':'1','2':'2','3':'3'},
     b={'3':'4','5':'6','6':'7','7':'8'},

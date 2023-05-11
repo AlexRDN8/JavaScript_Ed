@@ -14,13 +14,24 @@ Output:
 
 function removeDuplicateWords (s) {
     const array = s.split(" ")
-    const newArray = []
-    for (const word of array) {
-        if(!newArray.includes(word)){
-            newArray.push(word)
-        }
-    }
-    return newArray.join(" ")
+
+    // const object = {};
+    // for (const word of array){
+    //     object[word] = undefined;
+    // }
+    // return Object.keys(object).join(" ")
+
+    const set = new Set(array);
+    return Array.from(set).join(" ");
+    
+    //     const array = s.split(" ")
+//     const newArray = []
+//     for (const word of array) {
+//         if(!newArray.includes(word)){
+//             newArray.push(word)
+//         }
+//     }
+//     return newArray.join(" ")
 }
-// Через объекты и/или регулярное выражение не знаю как решить. 
+
 console.log(removeDuplicateWords('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
