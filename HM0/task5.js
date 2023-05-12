@@ -16,22 +16,21 @@ maskify("Skippy")                                   == "##ippy"
 maskify("Nananananananananananananananana Batman!") == "####################################man!"
 */
 const readline = require('readline-sync');
-const cardNumber = readline.question("Input card number: "); // на кириллице почему то работает некорректно
+const cc = readline.question("Input card number: "); // на кириллице почему то работает некорректно
 
-function maskify(cardNumber){
-    if (cardNumber.length <= 4){
-        return cardNumber;
+function maskify(cc){
+    if (cc.length <= 4){
+        return cc;
     }
-
-    return "#".repeat(cardNumber.length - 4) + cardNumber.slice(-4);
-
+    return "#".repeat(cc.length - 4) + cc.slice(-4);
+}
     // const maskedNumber = [];
-    // for (let i=0; i < cardNumber.length; i++){
-    //     if(i < cardNumber.length - 4){
+    // for (let i=0; i < cc.length; i++){
+    //     if(i < cc.length - 4){
     //         maskedNumber += "#";
     //     }
     //     else{
-    //         maskedNumber += cardNumber[i];
+    //         maskedNumber += cc[i];
     //     }
     // }
     // return maskedNumber;
@@ -40,10 +39,10 @@ function maskify(cardNumber){
     // "#######" + "5616"
 
 
-    // const s = cardNumber.at(-4) + cardNumber.at(-3) + cardNumber.at(-2) + cardNumber.at(-1);
+    // const s = cc.at(-4) + cc.at(-3) + cc.at(-2) + cc.at(-1);
     
 
-}
+//}
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
 

@@ -14,9 +14,8 @@ patrick feeney => P.F
 // const [firstName, lastName] = array;
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
-function abbreviateName (fullName){
-    const [firstName, lastName] = fullName.toUpperCase().split(" ");
-
+function abbreviateName (name){
+    const [firstName, lastName] = name.toUpperCase().split(" ");
     return `${firstName[0]}.${lastName[0]}`;
 }
 
