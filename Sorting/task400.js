@@ -13,7 +13,6 @@ so you will not have to decide how to order multiple strings of the same length.
 */
 
 function sortByLength (array){
-    const comparing = (a, b) => a.length - b.length;
-    return array.sort(comparing);        
+    return array.sort((a, b) => a.length - b.length);        
 }
 console.log(sortByLength(["Telescopes", "Glasses", "Eyes", "Monocles"]));

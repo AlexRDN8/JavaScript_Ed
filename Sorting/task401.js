@@ -10,12 +10,18 @@ Note that numbers written as strings are strings and must be sorted with the oth
 */
 function dbSort(a){
     const arrayOfNum = a
-        .filter(element => typeof(element) === "number")
-        .sort((a, b) => a- b);
+        .filter(element => typeof element === "number")
+        .sort((a, b) => a - b);
     const arrayOfStr = a
-        .filter(element => typeof(element) === "string")
+        .filter(element => typeof element === "string")
         .sort()
     
-    return arrayOfNum.concat(arrayOfStr); // почему если сложить 2 массива arrayOfNum + arrayOfStr получается строка 
+    return arrayOfNum.concat(arrayOfStr);
+    return [...arrayOfNum, ...arrayOfStr];
 }
+
+// 4 + "12" === "412"
+// 8 + true === 9
+// [7, 9] + [4, 0, 8] === "7,9" + "4,0,8" === "8,94,0,8"
+
 console.log(dbSort(["Apple",46,"287",574,"Peach","3","69",78,"Grape","423"])) // [46, 78, 574, '287', '3', '423', '69', 'Apple', 'Grape', 'Peach']

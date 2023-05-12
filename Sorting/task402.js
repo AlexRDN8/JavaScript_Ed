@@ -1,18 +1,48 @@
 /*
-Task
-You will be given an array of numbers. 
-You have to sort the odd numbers in ascending order while leaving the even numbers at their original positions.
+Tale University is a bit messy, and can't maintain an ordered list of their student. 
+Tale's dean wants to print a sortet list of his students by the gpa, 
+last name and age and post it on the walls so everybody can be impressed of his great students.
 
-Examples
-[7, 1]  =>  [1, 7]
-[5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
-[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
+Given a list of students, sort them by (from most important to least important):
+
+GPA (descending)
+First letter of last name (ascending)
+Age (ascending)
+And the class Student:
+
+class Student {
+  constructor(age, gpa, fullName) {
+    this.age = age;
+    this.gpa = gpa;
+    this.fullName = fullName;
+  };
+};
+Return the sorted result as full names string, comma separated.
+
+For Example, given the list (name, age, gpa):
+
+David Goodman, 23, 88
+Mark Rose, 25, 82
+Jane Doe, 22, 90
+Jane Dane, 25, 90
+sort(students) should return "Jane Doe,Jane Dane,David Goodman,Mark Rose"
 */
-function sortArray(array) {
-    const sortingOddNum = array 
-        .filter(num => num % 2 !== 0) 
-        .sort((a, b) => a - b);
-        return array.map(num => num % 2 === 0 ? num : sortingOddNum.shift())
-}
+function sort(students) {
+    return Object.values(students)
+};
 
-console.log(sortArray([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])) // [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
+class Student {
+    constructor(age, gpa, fullName) {
+      this.age = age;
+      this.gpa = gpa;
+      this.fullName = fullName;
+    };
+};
+var students =  [
+                    new Student(23, 88, "David Goodman"), 
+                    new Student(25, 82, "Mark Rose"), 
+                    new Student(22, 90, "Jane Doe"),
+                    new Student(25, 90, "Jane Dane")
+                ];
+
+console.log(sort(students)) //"Jane Doe,Jane Dane,David Goodman,Mark Rose"
