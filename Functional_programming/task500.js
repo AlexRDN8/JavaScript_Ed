@@ -17,13 +17,7 @@ The testing rubric will never ask for a number that does not exist, like:
 detect_int(n=>n%2==1, n=>n%2==0)      // => !??
 For examples, see the example test cases.
 */
-// function detectInt() {
-//     let arg = [...arguments]
-//     if (arg.length === 0) return 1
-//     for (let i=1;;i++){
-//     if (arg.every(v=>v(i))) return i
-//   }
-// }
+
 function detectInt(...arg) {
     if (arg.length === 0){
         return 1
