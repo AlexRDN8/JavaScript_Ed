@@ -27,8 +27,9 @@ Jane Doe, 22, 90
 Jane Dane, 25, 90
 sort(students) should return "Jane Doe,Jane Dane,David Goodman,Mark Rose"
 */
+
 function sort(students) {
-    return Object.values(students)
+    return students[0].age
 };
 
 class Student {

@@ -23,8 +23,14 @@ Example:
 
 [3, 8, 3, 6, 5, 7, 9, 1]   =>    [1, 8, 3, 3, 5, 6, 9, 7]
 */
+const convertToBits = num => num
+    .toString(2)
+    .split("")
+    // .map(x => Number(x))
+    .map(Number)
+    .reduce((sum, x) => sum + x, 0) // функция преобразования числа в биты.
+
 function sortByBit(arr) {
-    const convertToBits = num => num.toString(2).split("").reduce((sum, x) => Number(sum) + Number(x), 0) // функция преобразования числа в биты.
     return arr
         .sort((a, b) => a-b)
         .sort((a, b) => convertToBits(a)-convertToBits(b));

@@ -46,28 +46,31 @@ findPair(arr1,arr2) should return [[2,2],[0,4],[-2,6]]
 */
 
 function findPair(arr1,arr2){
-    function summ(arr){ // получение суммы массива из 2 элементов
-        return arr[0] + arr[1];
+    const pairs = arr1.map((_, i) => [arr1[i], arr2[i]]) // создание пар формата [ [arr1[0], arr2[0]] , [arr1[1], arr2[1]] , ... ] 
+    const sums = pairs.map(([x, y]) => x + y);
+
+    const sum2frequency = {};
+    for (const sum of sums) {
+        sum2frequency[sum] ??= 0;
+        sum2frequency[sum] += 1;
     }
-    const objectOfPairs = {};
-    const groupOfPairs = arr1.map((num, index) => [num, arr2[index]]) // создание пар формата [ [arr1[0], arr2[0]] , [arr1[1], arr2[1]] , ... ] 
-    for (const pair of groupOfPairs) {
-        objectOfPairs[summ(pair)] = objectOfPairs[summ(pair)] ?? []
-        objectOfPairs[summ(pair)].push(pair) 
-    }
-    //console.log(objectOfPairs);
-    const pairs = Object.values(objectOfPairs);
-    const maxLength = Math.max(...pairs.map(arr => arr.length)); // посчитал количество пар в каждой группе и взял максимальное
-    if(maxLength === 1){
+
+    const frequencies = Object.values(sum2frequency);
+    const maxFrequency = Math.max(...frequencies); // посчитал количество пар в каждой группе и взял максимальное
+    
+    if(maxFrequency === 1){
         return [];
     }
-    const sameSumPairs = pairs.filter(arr => arr.length === maxLength);
-    //return sameSumPairs.flat();
-    return sameSumPairs.length > 1 ? sameSumPairs[sameSumPairs.length - 1] : sameSumPairs.flat();
+    
+    const maxFreqSumms = Object.keys(sum2frequency)
+        .filter(sum => sum2frequency[sum] === maxFrequency)
 
+    const maxSumm = Math.max(...maxFreqSumms);
+
+    //return pairs.filter(arr => arr[0] + arr[1] === maxSumm)
+    return pairs.filter(([x, y]) => x + y === maxSumm)
 }
 console.log(findPair([1,2,3,4,5], [9,8,0,1,0]))  // should return [[1,9],[2,8]]
-//console.log(findPair([1,2,3,4,5],[0,0,0,0,0]))
-console.log(findPair([299,1573,120,1155,1322,-188,59,95,451,1155,231,1241,147,-86,887,1477,666],[905,256,616,455,-192,1392,677,1109,753,-419,1540,-505,1463,1290,317,1030,538] ))
+// //console.log(findPair([1,2,3,4,5],[0,0,0,0,0]))
+// console.log(findPair([299,1573,120,1155,1322,-188,59,95,451,1155,231,1241,147,-86,887,1477,666],[905,256,616,455,-192,1392,677,1109,753,-419,1540,-505,1463,1290,317,1030,538] ))
 
-//Решено не до конца, исправить.

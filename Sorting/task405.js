@@ -10,15 +10,12 @@ Example:
 alphabetized("The Holy Bible") // "BbeehHilloTy"
 */
 function alphabetized(s) {
-    const validChars = /[a-zA-Z]/;
+    // const validChars = /[a-zA-Z]/;
     return s
+        .replace(/[^a-z]/ig, "")
         .split("")
-        .filter(letter => validChars.test(letter))
-        .sort((a, b) =>{
-            a = a.toLowerCase();
-            b = b.toLowerCase();
-            return a.localeCompare(b)
-        })
+        // .filter(letter => validChars.test(letter))
+        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
         .join("") 
 }
 console.log(alphabetized('The Holy345 Bible--=')) // 'BbeehHilloTy'

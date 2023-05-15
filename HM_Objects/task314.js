@@ -27,14 +27,13 @@ I'd advise you to find an efficient way for grouping the words in anagrams other
 you'll probably won't pass the heavy superhero test cases
 */
 function groupAnagrams(words){
-  const arrayOfWords = words.map(word => word.split(""));
   const groupAnagrams = {};
-  for (let i = 0; i < arrayOfWords.length; i++) {
-    let sortedWord = arrayOfWords[i].sort();
-    groupAnagrams[sortedWord] = groupAnagrams[sortedWord] ?? [];
-    groupAnagrams[sortedWord].push(words[i])
+  for (const word of words) {
+    const sortedWord = word.split("").sort().join("");
+    groupAnagrams[sortedWord] ??= [];
+    groupAnagrams[sortedWord].push(word)
   }
-  return Object.values(groupAnagrams); // ниже вопрос!
+  return Object.values(groupAnagrams);
   
   // for (const word of arrayOfWords) {
   //   let sortedWord = word.sort();

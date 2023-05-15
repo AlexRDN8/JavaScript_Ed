@@ -16,15 +16,23 @@ is of length 3, while str2 has as its longest sub-string of contiguous vowels "e
 If two or more strings in the array have maximum sub-strings of the same length, 
 then the strings should remain in the order in which they were found in the orginal array.
 */
+// if (cond) {
+//     doSmth()
+// }
+
+// cond && doSmth()
+
 function sortStringsByVowels(strings){
-    const vowels = ['a','e','i','o','u','A','E','I','O','U']
+    const vowels = ['a','e','i','o','u','A','E','I','O','U'];
     const vovelsMaxCount = [];
     for (const word of strings) {
         let tempArray = []; 
         let count = 0;
         let maxCount = 0;
         for (const char of word) {
-            vowels.includes(char) ? count++ : count = 0;
+            vowels.includes(char) ? count++ : count = 0; //
+
+
             if(count >= maxCount){
                 maxCount = count;
             }
