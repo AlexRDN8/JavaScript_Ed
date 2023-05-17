@@ -89,7 +89,22 @@ var persons = [
 
 function frequency(arr, options) { //основная функция
 
+  if(options === undefined){
+    const uniqueEl = Array.from(new Set(arr));
+    const freq = uniqueEl
+    .map(element => [element, arr.filter(el => el === element).length])
+    .sort((a, b) => String(a[0]).localeCompare(String(b[0])));
+    return freq
+    //console.log(freq);
+  }else{
+    let result = arr;
+    for (const key in options) {
+      result = options[key](result);
+    }  
+    return result;
+  } 
 }
-console.log(frequency(['Peter', 'Anna', 'Rose', 'Peter', 'Peter', 'Anna'])) //[["Anna", 2], ["Peter", 3], ["Rose", 1]]
-//frequency(persons, {criteria: profession, compareTo: frequencyCompare}); //[["scientific", 3], ["teacher", 2], ["politician", 1]]
+//console.log(frequency(['Peter', 'Anna', 'Rose', 'Peter', 'Peter', 'Anna'])) //[["Anna", 2], ["Peter", 3], ["Rose", 1]]
+console.log(frequency([1, 10, 12, 2, 1, 10, 2, 2], {compareTo: alphabeticalCompare}))
+//console.log(frequency(persons, {criteria: profession, compareTo: frequencyCompare})); //[["scientific", 3], ["teacher", 2], ["politician", 1]]
 // Не сделал!
