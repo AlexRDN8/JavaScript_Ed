@@ -18,11 +18,12 @@ Input validation
 Assume all input is valid.
 */
 function zipWith(fn,a0,a1) {
-    if(a0.length <= a1.length){
-        return a0.map((num, index) => fn(num, a1[index]));
-    }else{
-        return a1.map((num, index) => fn(a0[index], num));
-    } 
+    // if(a0.length <= a1.length){
+    //     return a0.map((num, index) => fn(num, a1[index]));
+    // }else{
+    //     return a1.map((num, index) => fn(a0[index], num));
+    // } 
+    return a0.slice(0, a1.length).map((num, index) => fn(a0[index], num));
 }
 console.log(zipWith(Math.pow, [10,10,10,10], [0,1,2,3])) // [1,10,100,1000]
 console.log(zipWith((a,b) => a+b, [0,1,2,3], [0,1,2,3]))
