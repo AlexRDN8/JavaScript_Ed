@@ -66,11 +66,26 @@ When the sequence is done (in finite sequences), if you call seq.next() again, i
 
 Good luck!
 */
-function generator(sequencer) {
-    return function(){
-
-    }
+function generator(sequencer, ...args) {
+    return {
+      next: sequencer(...args),
+    };
 }
+
+//var seq = generator(rangeSeq, 5, 3); // 5,8,11,14,17
+
+
+// const fn = rangeSeq(5, 3);
+// console.log(fn());
+// console.log(fn());
+// console.log(fn());
+
+
+// console.log(seq.next(), 5);
+// console.log(seq.next(), 8);
+// console.log(seq.next(), 11);
+// console.log(seq.next(), 14);
+
 
 
 
@@ -78,72 +93,72 @@ function factorialSeq() {
     let [prev, curr] = [0, 1];
     return function(){
         if(prev === 0){
-            prev++
+          prev++
             return curr    
         }
-        [prev, curr] = [curr, curr * (curr +1)]
+        [prev, curr] = [curr, prev * (curr +1)]
         return prev;
     }
     
 }
 
-function fibonacciSeq() {
-    let [prev, curr] = [0, 1];
-    return function(){
-        [prev, curr] = [curr, prev + curr];
-        return prev; // почему не как в примере задачи es5 return curr
-    }
-}
+// function fibonacciSeq() {
+//     let [prev, curr] = [0, 1];
+//     return function(){
+//         [prev, curr] = [curr, prev + curr];
+//         return prev; // почему не как в примере задачи es5 return curr
+//     }
+// }
 
-function rangeSeq(start, step) {
-    let i = 0;
-    return function(){
-        let result = start + i;
-        i += step;
-        return result;
-    }
-}
+// function rangeSeq(start, step) {
+//     let i = 0;
+//     return function(){
+//         let result = start + i;
+//         i += step;
+//         return result;
+//     }
+// }
 
-function isPrime(n) {
-  if (n < 2) {
-    return false;
-  }
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) {
-      return false;
-    }
-  }
-  return true;
-}
+// function isPrime(n) {
+//   if (n < 2) {
+//     return false;
+//   }
+//   for (let i = 2; i <= Math.sqrt(n); i++) {
+//     if (n % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
-function primeSeq() {
-  let primes = [],
-      i = 2;
-  return function() {
-    while (!isPrime(i)) {
-      i++;
-    }
-    primes.push(i++);
-    return primes[primes.length - 1];
-  };
-}
+// function primeSeq() {
+//   let primes = [],
+//       i = 2;
+//   return function() {
+//     while (!isPrime(i)) {
+//       i++;
+//     }
+//     primes.push(i++);
+//     return primes[primes.length - 1];
+//   };
+// }
 
-function partialSumSeq() { // перекопировал, сам не смог решить
-  let sum = 0;
-  const arr = [];
-  for (let i = 0; i < arguments.length; i++) {
-    sum += arguments[i];
-    arr.push(sum);
-  }
-  arr.push("end");
-  return arr.join(", ");
-}
+// function partialSumSeq() { // перекопировал, сам не смог решить
+//   let sum = 0;
+//   const arr = [];
+//   for (let i = 0; i < arguments.length; i++) {
+//     sum += arguments[i];
+//     arr.push(sum);
+//   }
+//   arr.push("end");
+//   return arr.join(", ");
+// }
 
-const fn = partialSumSeq;
-console.log(fn(1, 3, 7, 2, 0)); // 1
-// console.log(fn()); // 2
-// console.log(fn()); // 3
-// console.log(fn()); // 5
-// console.log(fn()); // 8
-// console.log(fn()); // 13
-// console.log(fn()); // 21
+const fn = factorialSeq();
+//console.log(fn(1, 3, 7, 2, 0)); // 1
+console.log(fn()); // 2
+console.log(fn()); // 3
+console.log(fn()); // 5
+console.log(fn()); // 8
+console.log(fn()); // 13
+console.log(fn()); // 21

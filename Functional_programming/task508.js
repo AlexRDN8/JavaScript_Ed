@@ -11,23 +11,53 @@ abc(); // should return 'b' on this second call
 abc(); // should return 'c' on this third call
 abc(); // should return 'a' again on this fourth call
 */
+
+
+let x = 0;
+function f() {
+    x++;
+}
+
+f();
+f();
+f();
+f();
+f();
+
 function makeLooper(str) {
     let i = 0;
     return function (){
+        const result = str[i];
+        
+        i++;
         if(i === str.length){
             i = 0;
         }
-        let result = str[i];
-        i++;
+
         return result;
     }
 }
-// работает в терминале неправильно, но тесты на codewars почему то проходит.
-const abc = makeLooper("abc");
+
+a = []
+
+a.push(1)
+a.push(2)
+a.push(3)
+
+a = []
+
+
+let abc = makeLooper("abc");
 console.log(abc());
 console.log(abc());
+abc = makeLooper("abc");
 console.log(abc());
 console.log(abc());
+const qwerty = makeLooper("qwerty");
+console.log(qwerty());
+console.log(qwerty());
+console.log(qwerty());
+
 console.log(abc());
 console.log(abc());
 console.log(abc());

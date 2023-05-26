@@ -14,11 +14,18 @@ Here's a nice Youtube video about currying, which might help you if this is new 
 */
 function multiplyAll(arr) {
     return function (n){
-        if(arr.length === 0){
-            return [];
-        }else{
+        // if(arr.length === 0){
+        //     return [];
+        // }else{
             return arr.map(num => num * n)
-        }
+        // }
     }
 }
 console.log(multiplyAll([1, 2, 3])(2))
+console.log(multiplyAll([])(2))
+
+
+const fn = multiplyAll([2,3,4,5,6]);
+
+console.log(fn(2))
+console.log(fn(10))

@@ -17,12 +17,11 @@ var arr = [2,4,6,1,8,10];
 span(arr, isEven) === [[2,4,6],[1,8,10]]
 */
 function span(arr, predicate) { 
-    const indexOfFailure = arr.findIndex(num => predicate(num) === false);
-    if(indexOfFailure !== -1){
-        return [arr.slice(0,indexOfFailure), arr.slice(indexOfFailure)]
-    }else{
+    const indexOfFailure = arr.findIndex(num => !predicate(num));
+    if(indexOfFailure === -1){
         return [arr, []]
-    }    
+    }
+    return [arr.slice(0,indexOfFailure), arr.slice(indexOfFailure)]    
 }
 
 

@@ -22,12 +22,19 @@ The arguments f and g are unary functions (i.e. functions which take one argumen
 The problem with this compose function is that it only composes two functions. 
 Your task is to write a compose function which can compose any number of functions together.
 */
-function compose(...functions) { // как решить не прописывая ...functions как аргументы
+function compose() { // как решить не прописывая ...functions как аргументы
+    const functions = Array.from(arguments);
     return function(x) {
-        return Array.from(functions)
-         .reduceRight((x, fn) => fn(x) ,x)
+        return functions.reduceRight((x, fn) => fn(x) ,x)
     }
 }
 const addOne = (a) => a + 1
 const multTwo = (b) => b * 2
-console.log(compose(addOne, multTwo, addOne, addOne)(2)) //9
+
+// compose(a,b,c,d,e)(5);
+// a(b(c(d(e(5)))))
+
+const calculate = compose(addOne, multTwo, addOne, addOne);
+
+console.log(calculate(2)) //9
+console.log(calculate(10)) //25

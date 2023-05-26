@@ -19,12 +19,11 @@ you can implement the span function in one line. This is the beauty of functiona
 there are a whole host of useful functions, many of which can be implemented in terms of each other.
 */
 function dropWhile(arr, pred) {
-    const indexOfFailure = arr.findIndex(num => pred(num) === false);
+    const indexOfFailure = arr.findIndex(num => !pred(num));
     if(indexOfFailure === -1){
         return []
-    }else{
-        return arr.slice(indexOfFailure)
-    }    
+    }
+    return arr.slice(indexOfFailure)    
 }
 function isEven(num) {
     return num % 2 === 0;
