@@ -43,9 +43,9 @@ function spyOn (func) {
         return callCount;
     };
     spy.wasCalledWith = function(argument){
-        return wasCalledWith
-            .flat()
-            .includes(argument)
+        return wasCalledWith.some(arr => arr.includes(argument))
+            //.flat()// почему то codewars не распознает метод .flat()
+            //.includes(argument)
     };
     spy.returned = function(argument){
         return returned.includes(argument);
