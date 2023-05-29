@@ -10,18 +10,26 @@ logOnce("foo") // -> "foo"
 logOnce("bar") // -> no effect
 */
 function once(fn) {
-    let i = 0;
-    return function(arg){
-        let result = i;
-        i++;
-        if(result === 0){
-            return fn(arg)
+    let called = false;
+    return function(...args){
+        if(!called){
+            called = true;
+            return fn(...args)
         }
     }
 }
+function sum (a,b){
+    return a + b
+}
+const test = once(sum);
+
+console.log(test(5,7))
+console.log(test(5,5))
+console.log(test(7,9))
+
 // функция вроде правильно выполняется, но проверку н проходит.
-logOnce = once(console.log)
-logOnce("foo") // -> "foo"
-logOnce("bar") // -> no effect
-logOnce("bar") // -> no effect
-logOnce("bar") // -> no effect
+// logOnce = once(console.log)
+// logOnce("foo") // -> "foo"
+// logOnce("bar") // -> no effect
+// logOnce("bar") // -> no effect
+// logOnce("bar") // -> no effect

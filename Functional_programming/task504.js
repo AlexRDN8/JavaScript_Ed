@@ -33,5 +33,5 @@ function chain(input, fs) {
     return result;
     //return fs[1](fs[0](input))
 }
-  console.log (chain(2, [add, mult]));  // returns 90;
+console.log (chain(2, [add, mult]));  // returns 90;
  

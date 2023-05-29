@@ -29,26 +29,27 @@ adderSpy.returned(0); // false
 */
 function spyOn (func) {
     let callCount = 0;
-    let wasCalledWith = [];
-    let returned = [];
+    let wasCalledWith = new Set;
+    let returned = new Set;
 
-    function spy(...arg){
+    function spy(...args){
         callCount ++;
-        wasCalledWith.push(arg)
-        let result = func(...arg)
-        returned.push(result)
+        for (const arg of args) {
+            wasCalledWith.add(arg)
+        }
+        let result = func(...args)
+        returned.add(result)
         return result;
     }
     spy.callCount = function(){
         return callCount;
     };
     spy.wasCalledWith = function(argument){
-        return wasCalledWith.some(arr => arr.includes(argument))
-            //.flat()// почему то codewars не распознает метод .flat()
-            //.includes(argument)
+        return wasCalledWith.has(argument)
+
     };
     spy.returned = function(argument){
-        return returned.includes(argument);
+        return returned.has(argument);
     };
     return spy;
 }

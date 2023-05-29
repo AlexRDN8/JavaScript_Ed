@@ -25,7 +25,7 @@ The first thing to do is to implement the generator function:
 function generator(sequencer) {
    ...
 }
-generator(sequencer[, arg1, arg2, ...]) receives a sequencer function to generate the sequence and returns an object with a next() method. When the next() method is invoked, the next value is generated. The method could receive as well optional arguments to be passed to the sequencer function.
+generator(sequencer[, arg1, arg2, ...]) receives a sequencer function to generate the sequence and returns an object with a next() method. When the next() method is invoked, the next value is generated. The method could receive as well optional args to be passed to the sequencer function.
 
 This is an example of a dummy sequencer:
 
@@ -89,18 +89,18 @@ function generator(sequencer, ...args) {
 
 
 
-function factorialSeq() {
-    let [prev, curr] = [0, 1];
-    return function(){
-        if(prev === 0){
-          prev++
-            return curr    
-        }
-        [prev, curr] = [curr, prev * (curr +1)]
-        return prev;
-    }
-    
-}
+// function factorialSeq() {
+//     let [prev, curr] = [0, 1];
+//     return function(){
+//         if(prev === 0){
+//           prev++
+//           return curr    
+//         }
+//         curr *= prev;
+//         prev++;
+//         return curr;
+//     }
+// }
 
 // function fibonacciSeq() {
 //     let [prev, curr] = [0, 1];
@@ -143,19 +143,21 @@ function factorialSeq() {
 //   };
 // }
 
-// function partialSumSeq() { // перекопировал, сам не смог решить
-//   let sum = 0;
-//   const arr = [];
-//   for (let i = 0; i < arguments.length; i++) {
-//     sum += arguments[i];
-//     arr.push(sum);
-//   }
-//   arr.push("end");
-//   return arr.join(", ");
-// }
+function partialSumSeq(...args) {
+  let sum = 0;
+  i = 0;
+  return function partialSum(){
+    if(i > args.length - 1){
+      return "End"
+    }
+    sum += args[i];
+    i++;
+    return sum
+  }
+}
 
-const fn = factorialSeq();
-//console.log(fn(1, 3, 7, 2, 0)); // 1
+const fn = partialSumSeq(1, 3, 7, 2, 0);
+console.log(fn()); // 1
 console.log(fn()); // 2
 console.log(fn()); // 3
 console.log(fn()); // 5

@@ -22,31 +22,29 @@ The datatype of the function argument can be any primitive or object.
 If a function of zero arguments is passed, it is to be treated as a function of one argument which is undefined
 */
 function memo(fn) {
-  let stack = {};
-  return function(...arg){
-    let fnName = fn.name // чтобы не использовался один и тот же кеш для разных функций
-    if (stack[fnName] === undefined) {
-      stack[fnName] = {};
+  let cache = new Map(); // нужно Map
+  return function(arg){
+    if(cache.has(arg)){
+      return cache.get(arg)
     }
-    if(stack[fnName][arg] !== undefined){
-      return stack[fnName][arg]
-    }
-    let result = arg[0]
-    for (const i of arg) {
-      result = fn(result)
-    }
-    stack[fnName][arg] = result;
-    return result;
-  };
+    let result = fn(arg) 
+    cache.set(arg, result)
+    return result;  
+  }
 }
-//!! не все проверки проходит.
+
+function fn(o) {
+  return o.x;
+}
 
 function cube(x) {
   for(let i = 0; i < 1e9; i++);
   return x ** 3;
 }
-
-
+function square(x) {
+  for(let i = 0; i < 1e9; i++);
+  return x ** 2;
+}
 
 const mcube = memo(cube);
 console.time("куб3");
@@ -60,3 +58,5 @@ console.log(mcube(5)) // ≈0.0001s
 console.log(mcube(5)) // ≈0.0001s
 console.log(mcube(3)) // ≈0.0001s
 console.timeEnd("3 *куб5");
+const msquare = memo(square);
+console.log(msquare(5))
