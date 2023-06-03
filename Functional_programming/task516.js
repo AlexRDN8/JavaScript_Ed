@@ -18,19 +18,27 @@ addTwo(3); // == 5
 addTwo(3)(5); // == 10
 We can assume any number being passed in will be valid whole number.
 */
+// function add(n){
+//     let result = n;
+
+//     function summing (addedNum){
+//         result += addedNum;
+//         return summing;
+//     }
+
+//     // https://learn.javascript.ru/object-toprimitive
+//     summing[Symbol.toPrimitive] = () => result; // почитать про каррирование
+
+//     return summing;
+// }
 function add(n){
-    let result = n;
-
     function summing (addedNum){
-        result += addedNum;
-        return summing;
+        return add(n + addedNum);
     }
-
-    // https://learn.javascript.ru/object-toprimitive
-    summing[Symbol.toPrimitive] = () => result; // почитать про каррирование
-
+    summing[Symbol.toPrimitive] = () => n;
     return summing;
 }
+
 
 const fn = add(1)(2)(3); // 6
 
