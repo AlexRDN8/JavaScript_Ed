@@ -9,14 +9,29 @@ complete the get Info property and getInfo method/Info getter which should retur
 
 Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 */
-class Person {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-    get info(){ // get нужно просто чтобы из функции сделать метод?
+// class Person {
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     get info(){ // get нужно просто чтобы из функции сделать метод?
+//         return `${this.name}s age is ${this.age}`
+//     }
+// }
+
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+Object.defineProperty(Person.prototype, "info",{
+    get: function (){
         return `${this.name}s age is ${this.age}`
     }
-}
+})
+
+// Person.prototype.info = function(name, age){
+//     return `${this.name}s age is ${this.age}`
+// }
+
 var john = new Person('john', 34)
 console.log(john.info) // 'johns age is 34'

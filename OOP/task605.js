@@ -25,22 +25,49 @@ When asked for a route that doesn't exist, router should return:
 'Error 404: Not Found'
 The router should also handle modifying existing routes. See the example tests for more details.
 */
-function Router()
-{
-    this.routes = {};
-    Router.prototype.bind = function(url, http, action) {
+// function Router(){
+//     this.routes = {};
+// }
+// Router.prototype.bind = function(url, http, action) {
+//     const key = url + http;
+//     this.routes[key] = action;
+// }
+// Router.prototype.runRequest = function(url, http) {
+//     const key = url + http;
+//     if(this.routes[key] !== undefined){
+//         return this.routes[key]()
+//     }
+//     return "Error 404: Not Found"
+// }
+
+class Router{
+    #routes = {};
+    qwerty = 123;
+
+    // constructor(){
+    //     this.#routes = {};
+    // }
+
+    bind(url, http, action){
         const key = url + http;
-        this.routes[key] = action;
+        this.#routes[key] = action;
     }
-    Router.prototype.runRequest = function(url, http) {
+
+    runRequest(url, http){
         const key = url + http;
-        if(this.routes[key] !== undefined){
-            return this.routes[key]()
+        if(this.#routes[key] !== undefined){
+            return this.#routes[key]()
         }
         return "Error 404: Not Found"
     }
 }
+
+
 var router = new Router;
 router.bind('/hello', 'GET', function(){ return 'hello world'; });
 
 console.log(router.runRequest('/hello', 'GET')) // returns 'hello world';
+
+console.log(router.qwerty);
+// console.log(router.routes);
+// console.log(router.#routes);

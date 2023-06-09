@@ -17,20 +17,36 @@ using ES6 syntax and features.
 
 Have fun! :D
 */
-class Person {
-    constructor(firstName = "John", lastName = "Doe", age = 0, gender = "Male") {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.gender = gender;
-    }
-    sayFullName(){
-        return this.firstName + " " + this.lastName;
-    }
-    static greetExtraTerrestrials(raceName){
-        return `Welcome to Planet Earth ${raceName}`
-    }
+// class Person {
+//     constructor(firstName = "John", lastName = "Doe", age = 0, gender = "Male") {
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.age = age;
+//         this.gender = gender;
+//     }
+//     sayFullName(){
+//         return this.firstName + " " + this.lastName;
+//     }
+//     static greetExtraTerrestrials(raceName){
+//         return `Welcome to Planet Earth ${raceName}`
+//     }
+// }
+function Person(firstName = "John", lastName = "Doe", age = 0, gender = "Male"){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.gender = gender;
 }
+Person.prototype.sayFullName = function(){
+    return this.firstName + " " + this.lastName
+}
+Person.greetExtraTerrestrials = function(raceName){
+    return `Welcome to Planet Earth ${raceName}`
+}
+
+// Math.max(3, 5)
+
+
 let jane = new Person("Jane", "Doe", 25, "Female");
 console.log(jane.firstName);
 console.log(jane.lastName);
