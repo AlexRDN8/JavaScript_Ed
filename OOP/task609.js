@@ -1,3 +1,4 @@
+"use strict";
 /*
 Functional programming thrives from the reuse of functions. 
 One core feature to extend the reuse is the concatenation of functions.
@@ -32,22 +33,30 @@ var double = function(e) {return e * 2;};
 // result1(5); // 101
 
 
-Function.prototype.pipe = function(fn) { // скопировал
-    console.log(fn); // === square
-    //console.log(this); // === addOne
+Function.prototype.pipe = function(fn) { 
+    //console.log(fn); // === square
+    // console.log(this); // === addOne
+
     return function(arg) {
-        console.log("arg", arg);
-        //console.log(this);
+        console.log("this", this);
         return fn(this(arg));
-    }
+    }.bind(this);
 }
 
-const result3 = addOne.pipe(square);
+// const result3 = addOne.pipe(square);
 
-console.log(result3(2)); // 9
+// console.log(">>>>", result3(2)); // 9
 
 // strict mode
 
+
+// fn(1,2,3)
+// fn.call(obj,1,2,3)
+// fn.apply(obj,[1,2,3])
+
+// Math.max(1,2,3);
+// Math.max.apply(null, [1, 2, 3])
+// Math.max(...[1, 2, 3])
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
 // обычный вызов как функция (строгий - не строгий режим)
@@ -59,3 +68,22 @@ console.log(result3(2)); // 9
 
 // a.fn.call(x, 1, 2)
 // y.foo(5, 7);
+
+
+const obj = { x: 1, hvckhtkfcvcytuo: "qwert" };
+
+function fn(a, b, c) {
+    return this.hvckhtkfcvcytuo + a + b + c;
+}
+
+Function.prototype.myCall = function(object, ...args){
+    const s = Symbol(); //! почитать
+    object[s] = this
+    const result = object[s](...args)
+    delete object[s];
+    return result
+}
+//delete obj.hvckhtkfcvcytuo
+// console.log(fn.call(obj, 20, 300, 4000));
+console.log(fn.myCall(obj, 20, 300, 4000));
+console.log(obj);

@@ -15,20 +15,19 @@ Summary: The reduce method goes through each element of an array, applies the fu
 Ruby methods should expect a lambda.
 */
 
-Object.defineProperty(Array.prototype, "reduce", { //!!
-    value: function (process, initial){
-        let result = initial;
-        let i = 0;
-        if(initial === undefined){
-            result = this[0]
-            i = 1
-          }
-        for(; i < this.length; i++) {
-            result = process(result, this[i])
-          }
-          return result;
-    },
-});
+Array.prototype.reduce2 = function(process, initial) {
+  let result = initial;
+  let i = 0;
+  if(initial === undefined){
+    result = this[0]
+    i = 1
+  }
+  for(; i < this.length; i++) {
+    result = process(result, this[i])
+  }
+  return result;    
+}
 
-//console.log([1,2,5].reduce(function(sum, next){return sum+next}, 0)) 
-console.log( ['a','y','!'].reduce(function(x,y){return x+y}, 'y'))
+
+console.log([1,2,5].reduce2(function(sum, next){return sum+next}, 0)) 
+console.log( ['a','y','!'].reduce2(function(x,y){return x+y}, 'y'))
