@@ -23,13 +23,13 @@ Fun with trees: max sum
 Fun with trees: array to tree
 Fun with trees: is perfect
 */
-function maxSum(root) { // неверно.
-  if(root === undefined){
+function maxSum(root) {
+  if(root === null || root === undefined){
     return 0;
   }
-  const leftSum = maxSum(root.left);
+  const leftSum = maxSum(root.left);    
   const rightSum = maxSum(root.right);
-  // как посчитать в середине?
+  return root.value + Math.max(leftSum, rightSum);
 }
 
 var TreeNode = function(value, left, right) {
@@ -37,6 +37,11 @@ var TreeNode = function(value, left, right) {
     this.left = left;
     this.right = right;
 };
+
+
+// maxSum(new TreeNode(-22, new TreeNode(9), new TreeNode(50))); // 28
+// maxSum(new TreeNode(11, new TreeNode(9), new TreeNode(2)));   // 20
+
 var root = new TreeNode(5, new TreeNode(-22, new TreeNode(9), new TreeNode(50)), new TreeNode(11, new TreeNode(9), new TreeNode(2)))
 console.log(maxSum(root))
  /**

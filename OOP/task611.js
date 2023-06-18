@@ -23,10 +23,14 @@ Array.prototype.reduce2 = function(process, initial) {
     i = 1
   }
   for(; i < this.length; i++) {
-    result = process(result, this[i])
+    result = process(result, this[i], i, this)
   }
   return result;    
 }
+
+[2, 4, 6, 6, 1, 8, 52]
+  .filter(x >= 5) // [6, 6, 8, 52]
+  .every((x, i, arr) => x >= arr[0])
 
 
 console.log([1,2,5].reduce2(function(sum, next){return sum+next}, 0)) 

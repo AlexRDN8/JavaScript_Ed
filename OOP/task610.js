@@ -59,11 +59,15 @@ class Lazy { // сам не смог решить
     this.fnChain = [];
   }
   add(fn, ...args) {
-    this.fnChain.push(fn.bind(this, ...args));
+    // this.fnChain.push({fn, args})
+    // this.fnChain.push(fn.bind(null, ...args));
+    this.fnChain.push((...arr) => fn(...args, ...arr));
     return this;
   }
-  invoke(args) {
-    return this.fnChain.reduce((args, fn) => fn(...args), args);
+  invoke(initialArr) {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+    // return this.fnChain.reduce((arr, {fn, args}) => fn(...args, ...arr), initialArr); //деструктуризация- почитать
+    return this.fnChain.reduce((arr, fn) => fn(...arr), initialArr); //деструктуризация- почитать
   }
 }
 /// Функции для проверки
@@ -89,7 +93,7 @@ return Array.prototype.filter.call(args, function(value) {
 }
 /// 
 console.log(new Lazy()
-      .add(filterNumbers)
-      .add(filterRange, 2, 7)
+      .add(filterNumbers) // filterNumbers(1, 8, 6, [], "7", -1, {v: 5}, 4) → [1,8,6,-1,4]
+      .add(filterRange, 2, 7) // filterRange(2, 7, 1, 8, 6, -1, 4)
       .add(max)
       .invoke([1, 8, 6, [], "7", -1, {v: 5}, 4])); //6
