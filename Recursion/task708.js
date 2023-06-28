@@ -67,33 +67,33 @@ E.g. A struct {int n1, n2; float f; union {};} in C will have a representation o
 
 You may assume all input passed into your function is valid.
 */
-function sizeof(input, result = 0) {
-    const sizes = {
-        "char": 1,
-        "short": 2,
-        "int": 2,
-        "long": 4,
-        "long long": 8,
-        "unsigned char": 1,
-        "unsigned short": 2,
-        "unsigned int": 2,
-        "unsigned long": 4,
-        "unsigned long long": 8,
-        "float": 4,
-        "double": 8,
-    }
+const sizes = {
+    "char": 1,
+    "short": 2,
+    "int": 2,
+    "long": 4,
+    "long long": 8,
+    "unsigned char": 1,
+    "unsigned short": 2,
+    "unsigned int": 2,
+    "unsigned long": 4,
+    "unsigned long long": 8,
+    "float": 4,
+    "double": 8,
+}
+
+function sizeof(input) {
     if(typeof input === "string"){
         return sizes[input];
-    }else{
-        if(input.members.length === 0){ // без этого условия не проходило
-            return 0;
-        }
-        if(input.type === "struct"){
-            return input.members.reduce((acc, element) => acc + sizeof(element) ,result)
-        }
-        if(input.type === "union"){
-            return Math.max(...input.members.map(element => sizeof(element))) 
-        }
+    }
+    if(input.members.length === 0){
+        return 0;
+    }
+    if(input.type === "struct"){
+        return input.members.reduce((acc, element) => acc + sizeof(element), 0)
+    }
+    if(input.type === "union"){
+        return Math.max(...input.members.map(element => sizeof(element))) 
     }
     return result;
 }

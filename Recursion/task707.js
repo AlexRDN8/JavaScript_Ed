@@ -25,20 +25,22 @@ Your task is to write a program which will print a list of all happy numbers bet
 Disclaimer: This Kata is an adaptation of a HW assignment I had for McGill University's COMP 208 (Computers in Engineering) class.
 */
 function isHappyNum(number, arr = []){
-    let sumOfSquares = number
-        .toString()
-        .split("")
-        .map(el => Number(el) * Number(el))
-        .reduce((a, b) => a + b, 0);
-    if(arr.includes(sumOfSquares)){
+    if(number === 1){
+        return true
+    }
+    if(arr.includes(number)){ //изучить set и map
         return false
     }
-    arr.push(sumOfSquares);
-    if(sumOfSquares === 1){
-        return true
-    }else{
-        return isHappyNum(sumOfSquares, arr)
-    }
+
+    arr.push(number);
+
+    const sumOfSquares = number
+        .toString()
+        .split("")
+        .map(el => el ** 2)
+        .reduce((a, b) => a + b, 0);
+
+    return isHappyNum(sumOfSquares, arr)
 }
 
 function happyNumbers(x){
